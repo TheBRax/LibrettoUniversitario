@@ -11,6 +11,7 @@ public class TestLibretto {
 		Filtro votoUgualeA = (Esame e, Esame b, Voto v, String corso) -> e.getVoto() == v ;
 		Filtro cercaCorso = (Esame e, Esame b, Voto v, String corso) -> e.getCorso() == corso ;
 		Filtro giaInserito = (Esame e, Esame b, Voto v, String corso) -> e.getCorso() == b.getCorso() && e.getVoto() == b.getVoto() ;
+		Filtro inConflitto = (Esame e, Esame b, Voto v, String corso) -> e.getCorso() == b.getCorso() && e.getVoto() != b.getVoto() ;
 		
 		libr.add(new Esame("Analisi I", Voto.VENTISEI, LocalDate.of(2000, 1, 13)));
 		libr.add(new Esame("Geometria I", Voto.VENTISETTE, LocalDate.of(2000, 2, 15)));
@@ -43,6 +44,15 @@ public class TestLibretto {
 			if (giaInserito.filtra(e, new Esame("Chimica", Voto.VENTOTTO, null), null, null))
 				System.out.println(e + " già presente nella lista esami del Libretto Universitario");
 		}
+		
+		/**
+		 * Punto 5: verificare se un esame è in conflitto con uno già inserito nella lista esami del LibrettoUniversitario
+		 */
+		for (Esame e : libr.getEsami()) {
+			if (inConflitto.filtra(e, new Esame("Analisi I", Voto.VENTOTTO, null), null, null))
+				System.out.println(e + " nella lista esami del Libretto Universitario è in conflitto con quello cercato");
+		}
+		
 	}
 
 }
