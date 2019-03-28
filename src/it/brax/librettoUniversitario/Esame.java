@@ -40,7 +40,7 @@ public class Esame {
 	
 	@Override
 	public String toString() {
-		return String.format("Esame [voto=%s, esame=%s, data=%s]", voto, esame, data);
+		return String.format("Esame [voto=%s, esame=%s, data=%s]\n", voto, esame, data);
 	}	
 	
 }

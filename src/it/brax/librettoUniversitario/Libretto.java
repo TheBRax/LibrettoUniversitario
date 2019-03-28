@@ -17,4 +17,8 @@ public class Libretto {
 	public void add(Esame e) {
 		esami.add(e);
 	}
+
+	public List<Esame> getEsami() {
+		return esami;
+	}
 }
