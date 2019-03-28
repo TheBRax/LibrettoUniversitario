@@ -3,13 +3,13 @@ import java.time.LocalDate;
 
 public class Esame {
 	private Voto voto;
-	private String esame;
+	private String corso;
 	private LocalDate data;
 	
-	public Esame(String esame, Voto voto, LocalDate data) {
+	public Esame(String corso, Voto voto, LocalDate data) {
 		super();
 		this.voto = voto;
-		this.esame = esame;
+		this.corso = corso;
 		this.data = data;
 	}
 
@@ -21,12 +21,12 @@ public class Esame {
 		this.voto = voto;
 	}
 
-	public String getEsame() {
-		return esame;
+	public String getCorso() {
+		return corso;
 	}
 
-	public void setEsame(String esame) {
-		this.esame = esame;
+	public void setCorso(String corso) {
+		this.corso = corso;
 	}
 
 	public LocalDate getData() {
@@ -40,7 +40,7 @@ public class Esame {
 	
 	@Override
 	public String toString() {
-		return String.format("Esame [voto=%s, esame=%s, data=%s]\n", voto, esame, data);
+		return String.format("Esame [voto=%s, corso=%s, data=%s]\n", voto, corso, data);
 	}	
 	
 }
