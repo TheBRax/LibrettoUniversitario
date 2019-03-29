@@ -19,6 +19,7 @@ public class TestLibretto {
 		libr.add(new Esame("Fisica I", Voto.VENTOTTO, LocalDate.of(2000, 7, 21)));
 		libr.add(new Esame("Fondamenti di Informatica", Voto.TRENTA, LocalDate.of(2000, 9, 15)));
 		
+		System.out.println("\n----- Punto 2: trovare gli esami con una votazione pari ad un certo numero");
 		/**
 		 * Punto 2: trovare gli esami con una votazione pari ad un certo numero
 		 */
@@ -28,6 +29,7 @@ public class TestLibretto {
 		System.out.println(librFiltrato.getEsami());
 		librFiltrato.clear();
 		
+		System.out.println("\n----- Punto 3: trovare gli esami per il corso uguale a quello che si sta cercando");
 		/**
 		 * Punto 3: trovare gli esami per il corso uguale a quello che si sta cercando		
 		 */
@@ -37,6 +39,7 @@ public class TestLibretto {
 		System.out.println(librFiltrato.getEsami());
 		librFiltrato.clear();
 		
+		System.out.println("\n----- Punto 4: verificare se un esame risulta già inserito nella lista esami del LibrettoUniversitario");
 		/**
 		 * Punto 4: verificare se un esame risulta già inserito nella lista esami del LibrettoUniversitario
 		 */
@@ -45,6 +48,7 @@ public class TestLibretto {
 				System.out.println(e + " già presente nella lista esami del Libretto Universitario");
 		}
 		
+		System.out.println("\n----- Punto 5: verificare se un esame è in conflitto con uno già inserito nella lista esami del LibrettoUniversitario");
 		/**
 		 * Punto 5: verificare se un esame è in conflitto con uno già inserito nella lista esami del LibrettoUniversitario
 		 */
@@ -53,6 +57,7 @@ public class TestLibretto {
 				System.out.println(e + " nella lista esami del Libretto Universitario è in conflitto con quello cercato");
 		}
 		
+		System.out.println("\n----- Punto 6: verifica del funzionamento del nuovo metodo add");
 		/**
 		 * Punto 6: verifica del funzionamento del nuovo metodo add
 		 */
@@ -60,6 +65,20 @@ public class TestLibretto {
 		libr.add(new Esame("Fisica I", Voto.DICIANNOVE, LocalDate.now()));
 		libr.add(new Esame("Merendine", Voto.TRENTA_LODE, LocalDate.now()));
 		System.out.println(libr.getEsami());
+		
+		System.out.println("\n----- Punto 7: creazione del Libretto Migliorato");
+		/**
+		 * Punto 7: creazione del Libretto Migliorato
+		 */
+		Libretto librMigliorato = new Libretto();
+		try {
+			librMigliorato = (Libretto)libr.clone();
+		} catch (CloneNotSupportedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		librMigliorato.migliora();
+		System.out.println(librMigliorato.getEsami());
 		
 	}
 

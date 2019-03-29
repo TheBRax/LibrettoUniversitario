@@ -26,4 +26,11 @@ public enum Voto {
 		return voto;
 	}
 	
+	public static Voto getVoto2(int i) {
+		for (Voto v : Voto.values()) {
+			if (v.getVoto() == i) return v; 
+		}
+		return null;
+	}
+	
 }

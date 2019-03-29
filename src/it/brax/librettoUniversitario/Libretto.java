@@ -2,7 +2,7 @@ package it.brax.librettoUniversitario;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Libretto {
+public class Libretto implements Cloneable{
 	private List<Esame> esami;
 		
 	public Libretto() {
@@ -34,4 +34,18 @@ public class Libretto {
 	public List<Esame> getEsami() {
 		return esami;
 	}
+	
+	public void migliora() {
+		for (Esame e : this.getEsami()) {
+			if (e.getVoto().getVoto() >= 24) {
+				if (e.getVoto().getVoto() +2 >= 30) e.setVoto(Voto.TRENTA);
+				else e.setVoto(Voto.getVoto2(e.getVoto().getVoto() + 2));
+			}
+			else e.setVoto(Voto.getVoto2(e.getVoto().getVoto() + 1));
+		}
+	}
+	
+	 protected Object clone() throws CloneNotSupportedException {
+	        return super.clone();
+	    }
 }
