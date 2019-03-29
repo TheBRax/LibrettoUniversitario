@@ -53,6 +53,14 @@ public class TestLibretto {
 				System.out.println(e + " nella lista esami del Libretto Universitario è in conflitto con quello cercato");
 		}
 		
+		/**
+		 * Punto 6: verifica del funzionamento del nuovo metodo add
+		 */
+		libr.add(new Esame("Analisi I", Voto.VENTISEI, LocalDate.now()));
+		libr.add(new Esame("Fisica I", Voto.DICIANNOVE, LocalDate.now()));
+		libr.add(new Esame("Merendine", Voto.TRENTA_LODE, LocalDate.now()));
+		System.out.println(libr.getEsami());
+		
 	}
 
 }
