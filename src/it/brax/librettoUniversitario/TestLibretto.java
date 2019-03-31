@@ -1,6 +1,8 @@
 package it.brax.librettoUniversitario;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public class TestLibretto {
 
@@ -78,6 +80,27 @@ public class TestLibretto {
 		System.out.println(libr.getEsami());
 		System.out.println(librMigliorato);
 		System.out.println(libr);
+		
+		System.out.println("\n----- Punto 8: stampa del libretto in ordine alfabetico di corso ed in ordine decrescente di voto");
+		/**
+		 * Punto 8: ordinamento della lista
+		 */
+		libr.ordinaAlfabeticamente();
+		System.out.println(libr.getEsami());
+		libr.ordinaPerVoto(false);
+		System.out.println(libr.getEsami());
+		
+		libr.ordinaAlfabeticamente();
+		System.out.println(libr.getEsami());
+		libr.ordinaPerVoto(false);
+		System.out.println(libr.getEsami());
+		
+		System.out.println("\n----- Punto 9: elimina i voti sotto il 24");
+		/**
+		 * Punto 9: eliminazione voti sotto il 24
+		 */
+		librMigliorato.cancellaVotiBrutti();
+		System.out.println(librMigliorato.getEsami());
 	}
 
 }

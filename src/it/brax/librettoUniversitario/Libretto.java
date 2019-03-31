@@ -5,6 +5,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Libretto implements Serializable{
@@ -57,6 +58,14 @@ public class Libretto implements Serializable{
 		}
 	}
 	
+	public void cancellaVotiBrutti() {
+		List<Esame> esamiDaCancellare = new ArrayList<Esame>();
+		for (Esame e : this.esami) {
+			if (e.getVoto().getVoto() <= 24) esamiDaCancellare.add(e);
+		}
+		this.esami.removeAll(esamiDaCancellare);
+	}
+	
 	protected static Object deepCopy(Object object) {
 		try {
 			ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
@@ -70,5 +79,48 @@ public class Libretto implements Serializable{
 			e.printStackTrace();
 			return null;
 		}
+	}
+	
+	public void ordinaAlfabeticamente() {
+		List<String> corsiOrdineAlfabetico = new ArrayList<String>();
+		List<Esame> listaEsamiOrdineAlfabetico = new ArrayList<Esame>();
+		for (Esame e : esami) {
+			corsiOrdineAlfabetico.add(e.getCorso());
+		}
+		Collections.sort(corsiOrdineAlfabetico);
+		for (int i = 0; i <= corsiOrdineAlfabetico.size()-1; i++) {
+			for (Esame e : this.esami) {
+				if (e.getCorso() == corsiOrdineAlfabetico.get(i)) {
+					listaEsamiOrdineAlfabetico.add(e);
+					break;
+				}
+			}
+		}
+		this.esami.clear();
+		this.esami.addAll(listaEsamiOrdineAlfabetico);
+	}
+	
+	public void ordinaPerVoto(boolean ascendente) {
+		List<Integer> votiOrdinati = new ArrayList<Integer>();
+		List<Esame> listaEsamiOrdineVoto = new ArrayList<Esame>();
+		for (Esame e : esami) {
+			votiOrdinati.add(e.getVoto().getVoto());
+		}
+		
+		if (ascendente)
+			Collections.sort(votiOrdinati);
+		else
+			Collections.sort(votiOrdinati, Collections.reverseOrder());
+		
+		for (int i = 0; i <= votiOrdinati.size()-1; i++) {
+			for (Esame e : this.esami) {
+				if (e.getVoto().getVoto() == votiOrdinati.get(i)) {
+					listaEsamiOrdineVoto.add(e);
+					break;
+				}
+			}
+		}
+		this.esami.clear();
+		this.esami.addAll(listaEsamiOrdineVoto);
 	}
 }
