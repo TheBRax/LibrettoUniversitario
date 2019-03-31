@@ -1,8 +1,17 @@
 package it.brax.librettoUniversitario;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Libretto implements Cloneable{
+public class Libretto implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private List<Esame> esami;
 		
 	public Libretto() {
@@ -37,15 +46,29 @@ public class Libretto implements Cloneable{
 	
 	public void migliora() {
 		for (Esame e : this.getEsami()) {
-			if (e.getVoto().getVoto() >= 24) {
-				if (e.getVoto().getVoto() +2 >= 30) e.setVoto(Voto.TRENTA);
-				else e.setVoto(Voto.getVoto2(e.getVoto().getVoto() + 2));
+			if (e.getVoto().getVoto() == 31) {}
+			else {
+				if (e.getVoto().getVoto() >= 24) {
+					if (e.getVoto().getVoto() +2 >= 30) e.setVoto(Voto.TRENTA);
+					else e.setVoto(Voto.getVoto2(e.getVoto().getVoto() + 2));
+				}
+				else e.setVoto(Voto.getVoto2(e.getVoto().getVoto() + 1));
 			}
-			else e.setVoto(Voto.getVoto2(e.getVoto().getVoto() + 1));
 		}
 	}
 	
-	 protected Object clone() throws CloneNotSupportedException {
-	        return super.clone();
-	    }
+	protected static Object deepCopy(Object object) {
+		try {
+			ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+			ObjectOutputStream outputStrm = new ObjectOutputStream(outputStream);
+			outputStrm.writeObject(object);
+			ByteArrayInputStream inputStream = new ByteArrayInputStream(outputStream.toByteArray());
+			ObjectInputStream objInputStream = new ObjectInputStream(inputStream);
+			return objInputStream.readObject();
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
 }

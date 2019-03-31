@@ -1,7 +1,12 @@
 package it.brax.librettoUniversitario;
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Esame {
+public class Esame implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Voto voto;
 	private String corso;
 	private LocalDate data;

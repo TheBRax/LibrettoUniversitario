@@ -1,6 +1,8 @@
 package it.brax.librettoUniversitario;
 
-public enum Voto {
+import java.io.Serializable;
+
+public enum Voto implements Serializable {
 	DICIOTTO(18),
 	DICIANNOVE(19),
 	VENTI(20),

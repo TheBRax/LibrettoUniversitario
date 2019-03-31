@@ -18,6 +18,7 @@ public class TestLibretto {
 		libr.add(new Esame("Chimica", Voto.VENTOTTO, LocalDate.of(2000, 6, 20)));
 		libr.add(new Esame("Fisica I", Voto.VENTOTTO, LocalDate.of(2000, 7, 21)));
 		libr.add(new Esame("Fondamenti di Informatica", Voto.TRENTA, LocalDate.of(2000, 9, 15)));
+		libr.add(new Esame("Fondamenti di Automatica", Voto.DICIANNOVE, LocalDate.of(2003, 5, 15)));
 		
 		System.out.println("\n----- Punto 2: trovare gli esami con una votazione pari ad un certo numero");
 		/**
@@ -71,15 +72,12 @@ public class TestLibretto {
 		 * Punto 7: creazione del Libretto Migliorato
 		 */
 		Libretto librMigliorato = new Libretto();
-		try {
-			librMigliorato = (Libretto)libr.clone();
-		} catch (CloneNotSupportedException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
+		librMigliorato = (Libretto)Libretto.deepCopy(libr);
 		librMigliorato.migliora();
 		System.out.println(librMigliorato.getEsami());
-		
+		System.out.println(libr.getEsami());
+		System.out.println(librMigliorato);
+		System.out.println(libr);
 	}
 
 }
